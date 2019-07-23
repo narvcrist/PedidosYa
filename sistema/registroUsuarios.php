@@ -31,12 +31,12 @@
                     $alert='<p class="mensage" style=" color: #FFF; background: #60A756; text-align: center;  border-radius: 5px;  padding: 4px 15px;">Usuario registrado con éxito </p>';
                
                 // Enviar mail 
-                    //nombre, correo, clave
+                    //nombre, correo, clave, ..
                     $nombre = $_POST['nombre'];
                     $destinatario = $_POST['correo'];
                     $clave = $_POST['clave'];
                     $link = "https://pedidosya.herokuapp.com";
-                    $asunto = "Bienvenido a Pedidos Ya!";
+                    $asuntos = "Bienvenido a Pedidos Ya!";
                     
                     $from = new SendGrid\Email(null, "test@example.com");
                     $subject = "Hello World from the SendGrid PHP Library!";
