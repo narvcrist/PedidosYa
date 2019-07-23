@@ -32,27 +32,22 @@
                
                 // Enviar mail 
                     //nombre, correo, clave, ..
-
-
                     $nombre = $_POST['nombre'];
                     $destinatario = $_POST['correo'];
                     $clave = $_POST['clave'];
-                    
+                    $link = "https://pedidosya.herokuapp.com";
                     $asuntos = "Bienvenido a Pedidos Ya!";
                     
-                    $consulta= mysqli_query($conection,"SELECT *FROM usuario WHERE  usu_correo = '$correo'");
-                    $resultado = mysqli_fetch_array($consulta);
-                    if($resultado > 0){
-                        while($data = mysqli_fetch_array($consulta)){
-
-                    $link = "https://pedidosya.herokuapp.com/cambio.php?id=";
-
+                    
                     $from = new SendGrid\Email(null, "pedidosya@info.com.ec");
                     $subject = "Bienvenido a Pedidos Ya!";
                     $to = new SendGrid\Email(null, "$destinatario");
                     
                     $content = new SendGrid\Content("text/plain", "Hello, $nombre! \n
-                    Para ingresar al Pedidos Ya! ingresa al siguiente link: $link.$data[usu_id]
+                    Tus credenciales de acceso: \n
+                    Usuario: $destinatario \n
+                    Contraeña: $clave \n 
+                    Para ingresar al Pedidos Ya! ingresa al siguiente link: $link
                     ");
                     $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
@@ -62,10 +57,8 @@
                     $response = $sg->client->mail()->send()->post($mail);
                     //echo $response->statusCode();
                     //echo $response->headers();
-                    
                     //echo $response->body(); 
-                        }
-                    }
+               
                
                 }else{
                     $alert='<p class="mensage" style=" color: #FFF; background: red; text-align: center;  border-radius: 5px;  padding: 4px 15px;">Ocurrio un error al registrar al usuario</p>';
