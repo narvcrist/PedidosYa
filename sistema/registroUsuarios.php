@@ -38,19 +38,25 @@
                     $link = "https://pedidosya.herokuapp.com";
                     $asuntos = "Bienvenido a Pedidos Ya!";
                     
-                    $from = new SendGrid\Email(null, "test@example.com");
-                    $subject = "Hello World from the SendGrid PHP Library!";
+                    $from = new SendGrid\Email(null, "csn.narvaez@yavirac.edu.ec");
+                    $subject = "Bienvenido a Pedidos Ya!";
                     $to = new SendGrid\Email(null, "$destinatario");
-                    $content = new SendGrid\Content("text/plain", "Hello, Email!");
+                    
+
+                    $htmlContent = '<div style="width: 90%; margin-left: auto; margin-right: auto; background-color: #fff;">
+                    <p style="font-size: 24px">Hello<?php echo $nombre; ?></p>
+                    </div>';
+
+                    $content = new SendGrid\Content("text/html",$htmlContent);
                     $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
                     $apiKey = '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';
                     $sg = new \SendGrid($apiKey);
 
                     $response = $sg->client->mail()->send()->post($mail);
-                    echo $response->statusCode();
-                    echo $response->headers();
-                    echo $response->body(); 
+                    //echo $response->statusCode();
+                    //echo $response->headers();
+                    //echo $response->body(); 
                
                
                 }else{
