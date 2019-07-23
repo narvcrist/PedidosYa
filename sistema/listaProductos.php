@@ -24,7 +24,15 @@ session_start();
         </form>
         <br>
         <a href="registroProductos.php"><button class="button success"><span class="mif-add">&nbsp;</span>Nuevo producto</button></a>
-    <table class="table">
+    <br>
+    <br>
+        <table class="table striped table-border mt-4"
+    data-role="table"
+    data-show-search="false"  
+    data-show-table-info="false"  
+    data-rownum-title="Hola"
+    data-rows-steps="5, 10, 20, 30, 50, 100"
+    data-table-rows-count-title= "Número de registros">
     <thead>
     <tr>
         <th data-sortable="true" data-sort-dir="asc">ID</th>
@@ -32,7 +40,7 @@ session_start();
         <th data-sortable="true">Precio</th>
         <th data-sortable="true">Stock</th>
         <th data-sortable="true">Proveedor</th>
-        <th data-sortable="true">Imagen</th>
+        <th>Imagen</th>
         <th >Acciones</th>
     </tr>
     </thead>
@@ -73,7 +81,7 @@ session_start();
         <td><?php echo $data['pro_precio']; ?></td>
         <td><?php echo $data['pro_stock']; ?></td>
         <td><?php echo $data['prov_nombre']; ?></td>
-        <td class="imagen"><img src="<?php echo $foto ?>" alt="<?php echo $data['pro_descripcion'] ?>"></td>
+        <td class="imagen"><img  style="width: 70px;" src="<?php echo $foto ?>" alt="<?php echo $data['pro_descripcion'] ?>"></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
         <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
@@ -91,28 +99,7 @@ session_start();
     ?>
     </tbody>
     </table>
-    <div class="paginador">
-        <ul>
-        <?php
-            if($pagina !=1){
-        ?>
-            <li><a href="?pagina=<?php echo 1; ?>"><span class="mif-first"></span></a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>"><span class="mif-previous"></span></a></li>
-            <?php
-        }
-            for ($i=1; $i <= $total_paginas; $i++){
-                if($i == $pagina){
-                    echo '<li class="pagina">'.$i.'</li>';
-                }else{
-                    echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
-                }
-            }
-            if($pagina != $total_paginas){?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>"><span class="mif-next"></span></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>"><span class="mif-last"></span></a></li>
-        <?php } ?>
-        </ul>
-    </div>
+    
     </div>
 </div>
 <?php include "estructura/modal.php"; ?>

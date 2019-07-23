@@ -655,3 +655,6 @@ function validar(e){
     else if(!expresionRegular1.test(numeroTelefono.value))
       alert('Numero de telefono incorrecto');
   }
+  function showNotify(){
+    Metro.notify.create("This is a notify", "Title", {});
+}

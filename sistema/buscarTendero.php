@@ -7,7 +7,7 @@
 <head>
     <title>Sistema de gestion de pedidos</title>
     <?php include "estructura/estructura.php"; ?>
-
+    
 </head>
 <body>
 <?php include "estructura/header.php"; ?>
@@ -22,11 +22,11 @@
             }
         ?>
 
-        <h2>Lista de tenderos</h2>
-        <form action="buscarTendero.php" method="get">
+        <h2>Buscar tenderos</h2>
+        <form action="buscarTendero.php" method="get" data-role="validator" action="javascript:">
             <div class="row">
                 <div class="cell-md-6">
-                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar tenderos" value="<?php echo $busqueda; ?>">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar tenderos" value="<?php echo $busqueda; ?>"  data-validate="required">
                 </div>
             </div>
         </form>
@@ -80,16 +80,21 @@
         <td><?php echo $data["ten_direccion"] ?></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
-            <a href="actualizarTendero.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-pencil fg-green"></div></a>
+            <a href="actualizarTenderos.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-pencil fg-green"></div></a>
             <?php
             if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
             |
-            <a href="eliminarTendero.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-bin fg-red"></div></a>
+            <a href="eliminarTenderos.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-bin fg-red"></div></a>
             <?php } ?> 
         </td>
     </tr>
     <?php
             }
+        }else{
+            echo '<script>
+            $.notify("El tendero que busca no existe", "warn");
+      </script>';
+        exit;
         }
     ?>
     </tbody>

@@ -22,11 +22,11 @@
             }
         ?>
 
-        <h2>Lista de proveedores</h2>
-        <form action="buscarProveedor.php" method="get">
+        <h2>Buscar proveedores</h2>
+        <form action="buscarProveedor.php" method="get" data-role="validator" action="javascript:">
             <div class="row">
                 <div class="cell-md-6">
-                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar proveedor" value="<?php echo $busqueda; ?>">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar proveedor" value="<?php echo $busqueda; ?>"  data-validate="required">
                 </div>
             </div>
         </form>
@@ -77,7 +77,7 @@
         <td><?php echo $data["prov_email"] ?></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
-            <a href="actualizarProveedores.php?id=<?php echo $data["ten_id"] ?>"><div class="mif-pencil fg-green"></div></a>
+            <a href="actualizarProveedores.php?id=<?php echo $data["prov_id"] ?>"><div class="mif-pencil fg-green"></div></a>
             <?php
             if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
             |
@@ -87,37 +87,16 @@
     </tr>
     <?php
             }
+        }else{
+            echo '<script>
+            $.notify("El proveedor que busca no existe", "warn");
+      </script>';
+        exit;
         }
     ?>
     </tbody>
     </table>
-    <?php 
-        if($registros !=0){
-    ?>
-    <div class="paginador">
-        <ul>
-        <?php
-            if($pagina !=1){
-        ?>
-            <li><a href="?pagina=<?php echo 1; ?>&busqueda=<?php echo $busqueda; ?>">|<</a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>&busqueda=<?php echo $busqueda; ?>"><<</a></li>
-            <?php
-        }
-            for ($i=1; $i <= $total_paginas; $i++){
-                if($i == $pagina){
-                    echo '<li class="pagina">'.$i.'</li>';
-                }else{
-                    echo '<li><a href="?pagina='.$i.'&busqueda='.$busqueda.'">'.$i.'</a></li>';
-                }
-            }
-            if($pagina != $total_paginas){
-            ?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>&busqueda=<?php echo $busqueda; ?>">>></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>&busqueda=<?php echo $busqueda; ?>">>|</a></li>
-        <?php } ?>
-        </ul>
-    </div>
-<?php } ?>
+   
     </div>
 </div>
 </body>

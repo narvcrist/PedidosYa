@@ -81,8 +81,8 @@
                 if($_SESSION['rol'] ==1 || $_SESSION['rol'] ==2){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
                 ?> 
               <li><a href="registroProductos.php"><span class="icon"><span class="mif-add fg-green"></span></span> <span class="caption">Nuevo producto</span></a></li>
-              <?php } ?>
               <li><a href="listaProductos.php"><span class="icon"><span class="mif-file-text fg-green"></span></span> <span class="caption">Productos</span></a></li>
+              <?php } ?>
               <?php
                 if($_SESSION['rol'] ==3){  //Si es 1=Administrador entonces tiene permiso para Administrar provedores/tenderos/productos/facturas
                 ?>

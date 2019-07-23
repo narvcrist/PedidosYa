@@ -25,11 +25,11 @@
             }
         ?>
 
-        <h2>Lista de usuarios</h2>
-        <form action="buscarUsuario.php" method="get">
+        <h2>Buscar usuarios</h2>
+        <form action="buscarUsuario.php" method="get" data-role="validator" action="javascript:">
             <div class="row">
                 <div class="cell-md-6">
-                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar usuarios" value="<?php echo $busqueda; ?>">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar usuarios" value="<?php echo $busqueda; ?>"  data-validate="required">
                 </div>
             </div>
         </form>
@@ -97,6 +97,11 @@
     </tr>
     <?php
             }
+        }else{
+            echo '<script>
+            $.notify("El usuario que busca no existe", "warn");
+      </script>';
+        exit;
         }
     ?>
     </tbody>

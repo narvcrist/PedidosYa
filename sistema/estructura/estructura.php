@@ -8,4 +8,5 @@
     <meta charset="UTF-8">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript" src="js/notify.js"></script>
 

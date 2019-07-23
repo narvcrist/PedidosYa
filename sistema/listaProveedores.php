@@ -23,7 +23,15 @@ session_start();
         </form>
         <br>
         <a href="registroProveedores.php"><button class="button success"><span class="mif-add">&nbsp;</span>Nuevo proveedor</button></a>
-    <table class="table">
+    <br>
+    <br>
+        <table class="table striped table-border mt-4"
+    data-role="table"
+    data-show-search="false"  
+    data-show-table-info="false"  
+    data-rownum-title="Hola"
+    data-rows-steps="5, 10, 20, 30, 50, 100"
+    data-table-rows-count-title= "Número de registros">
     <thead>
     <tr>
         <th data-sortable="true" data-sort-dir="asc">ID</th>
@@ -80,24 +88,7 @@ session_start();
     </table>
     <div class="paginador">
         <ul>
-        <?php
-            if($pagina !=1){
-        ?>
-            <li><a href="?pagina=<?php echo 1; ?>"><span class="mif-first"></span></a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>"><span class="mif-previous"></span></a></li>
-            <?php
-        }
-            for ($i=1; $i <= $total_paginas; $i++){
-                if($i == $pagina){
-                    echo '<li class="pagina">'.$i.'</li>';
-                }else{
-                    echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
-                }
-            }
-            if($pagina != $total_paginas){?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>"><span class="mif-next"></span></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>"><span class="mif-last"></span></a></li>
-        <?php } ?>
+       
         </ul>
     </div>
     </div>

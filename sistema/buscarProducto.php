@@ -7,6 +7,7 @@
 <head>
     <title>Sistema de gestion de pedidos</title>
     <?php include "estructura/estructura.php"; ?>
+    <script type="text/javascript" src="js/notify.js"></script>
 
 </head>
 <body>
@@ -26,10 +27,12 @@
         <form action="buscarProducto.php" method="get">
             <div class="row">
                 <div class="cell-md-6">
-                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar producto" value="<?php echo $busqueda; ?>">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar producto" value="<?php echo $busqueda; ?> ">
                 </div>
             </div>
         </form>
+        <br>
+        <br>
     <table class="table">
     <thead>
     <tr>
@@ -84,7 +87,7 @@
         <td><?php echo $data['pro_precio']; ?></td>
         <td><?php echo $data['pro_stock']; ?></td>
         <td><?php echo $data['prov_nombre']; ?></td>
-        <td class="imagen"><img src="<?php echo $foto ?>" alt="<?php echo $data['pro_descripcion'] ?>"></td>
+        <td class="imagen"><img style="width: 70px;" src="<?php echo $foto ?>" alt="<?php echo $data['pro_descripcion'] ?>"></td>
         <td>
         <div data-role="charms" data-position="top"><div>top</div></div>
         <?php  if($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2 ){ ?>
@@ -93,37 +96,20 @@
             <a href="actualizarProductos.php?id=<?php echo $data['pro_id']; ?>"><div class="mif-pencil fg-green" data-role="hint" data-hint-text="Editar producto"></div></a>
             |
             <a class="del_product" href="#" product="<?php echo $data['pro_id']; ?>"><div class="mif-bin fg-red" data-role="hint" data-hint-text="Eliminar producto"></div></a>    
-        </td>
-        <?php } ?>    
+            <?php } ?> 
+        </td> 
     </tr>
     <?php
             }
+        }else{
+            echo '<script>
+            $.notify("El producto que busca no existe", "warn");
+      </script>';
+        exit;
         }
     ?>
     </tbody>
     </table>
-    <div class="paginador">
-        <ul>
-        <?php
-            if($pagina !=1){
-        ?>
-            <li><a href="?pagina=<?php echo 1; ?>"><span class="mif-first"></span></a></li>
-            <li><a href="?pagina=<?php echo $pagina-1; ?>"><span class="mif-previous"></span></a></li>
-            <?php
-        }
-            for ($i=1; $i <= $total_paginas; $i++){
-                if($i == $pagina){
-                    echo '<li class="pagina">'.$i.'</li>';
-                }else{
-                    echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
-                }
-            }
-            if($pagina != $total_paginas){?>
-            <li><a href="?pagina=<?php echo $pagina+1; ?>"><span class="mif-next"></span></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas; ?>"><span class="mif-last"></span></a></li>
-        <?php } ?>
-        </ul>
-    </div>
     </div>
 </div>
 <?php include "estructura/modal.php"; ?>
