@@ -29,6 +29,27 @@
 
                 if($consulta_insert){
                     $alert='<p class="mensage" style=" color: #FFF; background: #60A756; text-align: center;  border-radius: 5px;  padding: 4px 15px;">Usuario registrado con éxito </p>';
+               
+                // Enviar mail 
+                    //nombre, correo, clave
+                    $nombre = $_POST['nombre'];
+                    $destinatario = $_POST['correo'];
+                    $clave = $_POST['clave'];
+                    $link = "https://pedidosya.herokuapp.com";
+                    $asunto = "Bienvenido a Pedidos Ya!";
+                    
+                    $envio = "Bienvenido: $nombre \n";
+                    $envio .= "Tu clave es: $clave \n";
+                    $envio .= "Tu correo es: $correo \n";
+                    $envio .= "Para ingresar al sistema da click en el siguinte link : $link";
+
+                    echo "$envio";
+
+                    //Enviando correo
+
+                    mail($destinatario, $asunto, $envio);
+               
+               
                 }else{
                     $alert='<p class="mensage" style=" color: #FFF; background: red; text-align: center;  border-radius: 5px;  padding: 4px 15px;">Ocurrio un error al registrar al usuario</p>';
                 }
