@@ -3,7 +3,7 @@
     if($_SESSION['rol'] !=1){
         header('location: ./');
     }
-    require 'vendor/autoload.php';
+    require ("path/to/sendgrid-php/sendgrid-php.php");
     include "../conexion.php";
     if(!empty($_POST)){
         $alert='';
