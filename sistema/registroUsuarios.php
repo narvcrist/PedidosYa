@@ -38,16 +38,13 @@
                     $link = "https://pedidosya.herokuapp.com";
                     $asuntos = "Bienvenido a Pedidos Ya!";
                     
-                    $from = new SendGrid\Email(null, "csn.narvaez@yavirac.edu.ec");
+                    $from = new SendGrid\Email(null, "pedidosya@info.com.ec");
                     $subject = "Bienvenido a Pedidos Ya!";
                     $to = new SendGrid\Email(null, "$destinatario");
                     
-
-                    $htmlContent = '<div style="width: 90%; margin-left: auto; margin-right: auto; background-color: #fff;">
-                    <p style="font-size: 24px">Hello<?php echo $nombre; ?></p>
-                    </div>';
-
-                    $content = new SendGrid\Content("text/html",$htmlContent);
+                    $content = new SendGrid\Content("text/plain", "Hello, $nombre! \n
+                    Para ingresar al Pedidos Ya! ingresa al siguiente link: $link
+                    ");
                     $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
                     $apiKey = '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';
