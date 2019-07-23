@@ -3,7 +3,7 @@
     if($_SESSION['rol'] !=1){
         header('location: ./');
     }
-
+    require 'vendor/autoload.php';
     include "../conexion.php";
     if(!empty($_POST)){
         $alert='';
@@ -38,16 +38,19 @@
                     $link = "https://pedidosya.herokuapp.com";
                     $asunto = "Bienvenido a Pedidos Ya!";
                     
-                    $envio = "Bienvenido: $nombre \n";
-                    $envio .= "Tu clave es: $clave \n";
-                    $envio .= "Tu correo es: $correo \n";
-                    $envio .= "Para ingresar al sistema da click en el siguinte link : $link";
+                    $from = new SendGrid\Email(null, "test@example.com");
+                    $subject = "Hello World from the SendGrid PHP Library!";
+                    $to = new SendGrid\Email(null, "$destinatario");
+                    $content = new SendGrid\Content("text/plain", "Hello, Email!");
+                    $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-                    echo "$envio";
+                    $apiKey = getenv('SENDGRID_API_KEY');
+                    $sg = new \SendGrid($apiKey);
 
-                    //Enviando correo
-
-                    mail($destinatario, $asunto, $envio);
+                    $response = $sg->client->mail()->send()->post($mail);
+                    echo $response->statusCode();
+                    echo $response->headers();
+                    echo $response->body(); 
                
                
                 }else{
