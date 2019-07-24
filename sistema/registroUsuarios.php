@@ -50,7 +50,7 @@
                     ");
                     $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-                    $apiKey = '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';
+                    $apiKey = '';
                     $sg = new \SendGrid($apiKey);
 
                     $response = $sg->client->mail()->send()->post($mail);
