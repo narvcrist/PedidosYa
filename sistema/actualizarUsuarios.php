@@ -138,7 +138,6 @@
                     </div>
                     <br>
                     <div class="col-12 text-right">
-                    <a href="listaUsuarios.php"><input type="button" class="button" value="Cancelar"></a>
                         <button class="button success">Actualizar</button>
                     </div>
                 </form>  
@@ -148,6 +147,4 @@
     </div>
 </body>
 </html>
-
-
 
