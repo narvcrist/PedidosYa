@@ -43,8 +43,8 @@
                     $subject = "Bienvenido a Pedidos Ya!";
                     $to = new SendGrid\Email(null, "$destinatario");
                     
-                    $content = new SendGrid\Content("text/plain", "Hello, $nombre! \n
-                    Tus credenciales de acceso: \n Usuario: $destinatario \n Contraeña: $clave \n 
+                    $content = new SendGrid\Content("text/plain", "Hello, $nombre!,
+                    Tus credenciales de acceso: \n Usuario: $destinatario \n Contraeña: $clave, 
                     Para ingresar al Pedidos Ya! ingresa al siguiente link: $link
                     ");
                     $mail = new SendGrid\Mail($from, $subject, $to, $content);
