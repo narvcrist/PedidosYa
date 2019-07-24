@@ -43,11 +43,12 @@
                     $subject = "Bienvenido a Pedidos Ya!";
                     $to = new SendGrid\Email(null, "$destinatario");
                     
-                    $htmlContent = '<div style="width: 90%; margin-left: auto; margin-right: auto; background-color: #fff;">
-                    <p style="font-size: 24px"><?php echo $nombre;?></p></div>';
-
                     
-                    $mail = new SendGrid\Mail($from, $subject, $to, $$htmlContent);
+                    $content = new SendGrid\Content("text/plain", "Hello, $nombre!
+                    Tus credenciales de acceso: \n Usuario: $destinatario \n Contraseña: $clave, 
+                    Para ingresar al Pedidos Ya! ingresa al siguiente link: $link
+                    ");
+                    $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
                     $apiKey = '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';
                     $sg = new \SendGrid($apiKey);
